@@ -1,23 +1,47 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [newYenilist, setyenilist] = useState("");
+  const [listeler, setliste] = useState([]);
+
+
+
+  function addliste() {
+
+
+    if (!newYenilist) {
+      alert("birşey girin");
+      return;
+    }
+
+    const liste = {
+
+      id: Math.floor(Math.random() * 1000),
+      value: newYenilist
+    }
+    setliste(olditem => [...olditem, liste])
+    setyenilist("");
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <h1>To-do List</h1>
+
+
+      <input type="text" placeholder="yeni görev"
+        value={newYenilist}
+        onChange={e => setyenilist(e.target.value)}
+
+      ></input>
+      <button onClick={() => addliste()}>Ekle</button>
+      <ul>
+        {listeler.map(liste => (
+          <li key={liste.id}>{liste.value}</li> // Liste öğelerini gösterir
+        ))}
+      </ul>
     </div>
   );
 }
