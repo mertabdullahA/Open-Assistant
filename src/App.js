@@ -39,7 +39,7 @@ function App() {
       <button onClick={() => addliste()}>Ekle</button>
       <ul>
         {listeler.map(liste => (
-          <li key={liste.id}>{liste.value}</li> // Liste öğelerini gösterir
+          <li key={liste.id}>{liste.value}</li>
         ))}
       </ul>
     </div>
